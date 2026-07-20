@@ -898,7 +898,7 @@ class FeatureShuffler:
           f"Unknown method: {self.method}. Use 'random' or 'none'."
       )
 
-    return [np.array(p) for p in shuffle_patterns]
+    return [np.asarray(p, dtype=np.intp) for p in shuffle_patterns]
 
 
 class PreprocessingPipeline(TransformerMixin, BaseEstimator):

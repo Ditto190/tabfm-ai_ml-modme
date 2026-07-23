@@ -191,8 +191,6 @@ methodology is released, this README will be updated with a link.
 You can run the unit tests directly using Python's `unittest` module:
 
 ```bash
-(defaults are 500 features and no fixed row cap), plus `n_estimators` for
-ensembling over multiple sampled contexts and `batch_size` for memory control.
 # Or run specific test files:
 PYTHONPATH=. python3 -m unittest tabfm/src/pytorch/model_test.py
 PYTHONPATH=. python3 -m unittest tabfm/src/classifier_and_regressor_pytorch_test.py

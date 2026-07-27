@@ -191,12 +191,16 @@ methodology is released, this README will be updated with a link.
 You can run the unit tests directly using Python's `unittest` module:
 
 ```bash
+# Run all tests (requires both JAX and PyTorch installed)
+PYTHONPATH=. python3 -m unittest discover -s tabfm/src/ -p "*_test.py"
+
 # Or run specific test files:
 PYTHONPATH=. python3 -m unittest tabfm/src/pytorch/model_test.py
 PYTHONPATH=. python3 -m unittest tabfm/src/classifier_and_regressor_pytorch_test.py
 ```
 
 Alternatively, if you have Bazel installed, you can run tests with:
+
 ```bash
 bazel test //...
 ```

@@ -1002,7 +1002,6 @@ class StackingTest(absltest.TestCase):
   def test_max_num_rows_with_enable_nnls_too_small_raises(self):
     classifier = TabFMClassifier(
         model=self.model,
-        config=self.config,
         n_estimators=2,
         max_num_rows=2000,
         average_logits=False,
@@ -1016,7 +1015,6 @@ class StackingTest(absltest.TestCase):
   def test_max_num_rows_with_enable_nnls_classifier(self):
     classifier = TabFMClassifier(
         model=self.model,
-        config=self.config,
         n_estimators=2,
         max_num_rows=5000,
         enable_nnls=True,
@@ -1040,7 +1038,6 @@ class StackingTest(absltest.TestCase):
   def test_max_num_rows_with_enable_nnls_regressor(self):
     regressor = TabFMRegressor(
         model=self.model,
-        config=argparse.Namespace(loss="rmse"),
         n_estimators=2,
         max_num_rows=5000,
         enable_nnls=True,
@@ -1062,7 +1059,6 @@ class StackingTest(absltest.TestCase):
   def test_max_num_rows_greater_than_N_with_enable_nnls_uses_cv(self):
     classifier = TabFMClassifier(
         model=self.model,
-        config=self.config,
         n_estimators=2,
         max_num_rows=6000,
         enable_nnls=True,

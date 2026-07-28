@@ -738,7 +738,7 @@ class CalibrationTest(absltest.TestCase):
       )
 
       with mock.patch.object(
-          classifier, _predict_oof_proba", return_value=(mock_oof, None)
+          classifier, "_predict_oof_proba", return_value=(mock_oof, None)
       ):
         classifier.fit(X, y)
 

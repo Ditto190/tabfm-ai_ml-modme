@@ -3036,7 +3036,9 @@ class TabFMClassifier(ClassifierMixin, BaseEstimator):
   @jt.typed
   def _predict_oof_proba(
       self, cv: int = 5
-  ) -> tuple[jt.Float[jt.ArrayT, "E N K"], Optional[jt.Int[jt.ArrayT, "V"]]]:
+  ) -> tuple[
+    jt.Float[jt.Array | np.ndarray, "E N K"],
+    Optional[jt.Int[jt.Array | np.ndarray, "V"]]]:
     """Perform out-of-fold predictions on some or all training samples.
 
     Predictions are either made using cross-validation, a single train/val
@@ -3949,25 +3951,14 @@ class TabFMRegressor(RegressorMixin, BaseEstimator):
       state.pop(attr, None)
     return state
 
-  @jt.typed
-  def predict_oof(self, cv: int = 5) -> jt.Float[Array | np.ndarray, "E N"]:
-    """Perform out-of-fold predictions on the training set for each ensemble member."""
-    check_is_fitted(self)
-
-    outputs_oof_scaled = self._compute_oof_preds_scaled(cv=cv)
-    n_estimators, N = outputs_oof_scaled.shape
-
-    outputs_oof = np.zeros((n_estimators, N))
-    for i in range(n_estimators):
-      outputs_oof[i, :] = self._inverse_transform_y(outputs_oof_scaled[i])
-
-    return outputs_oof
 
   @jt.typed
   def _compute_oof_preds_scaled(
       self,
       cv: int = 5,
-  ) -> tuple[jt.Float[jt.ArrayT, "E N"], Optional[jt.Int[jt.ArrayT, "V"]]]:
+  ) -> tuple[
+    jt.Float[jt.Array | np.ndarray, "E N"],
+    Optional[jt.Int[jt.Array | np.ndarray, "V"]]]:
     """Perform out-of-fold predictions on some or all training samples.
 
     Predictions are either made using cross-validation, a single train/val

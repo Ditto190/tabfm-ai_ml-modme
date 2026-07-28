@@ -685,7 +685,7 @@ class ModelTypeMismatchTest(absltest.TestCase):
     regressor.fit(X, np.random.rand(10))
 
     with self.assertRaisesRegex(ValueError, "model_type='regression'"):
-      regressor.predict_oof(cv=2)
+      regressor._compute_oof_preds_scaled(cv=2)
 
   def test_classifier_predict_proba_raises_on_regression_model(self):
     classifier = TabFMClassifier(model=self._tiny_model("rmse"), n_estimators=2)
